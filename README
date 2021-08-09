@@ -1,0 +1,55 @@
+Grigoras Adrian, 322CC
+Tema 2 - PA
+
+--------------------------------
+
+1) Poduri
+-Am facut citirea cu buffered reader pentru elemente
+-Am tratat problema cu un bfs din punctul din care plecam
+-Pentru fiecare pozitie pentru care stim ca inca nu s-a terminat matricea:
+    ii calculam noua pozitie pentru toate posibilitatile (sus, jos, stanga dreapta)
+    in functie de matricea pe care suntem, vedem unde ne putem duce
+    verificam ca noua poz sa nu fie '.' si matricea pe care suntem sa duca in noua pozitie
+    daca noile pozitii valide nu sunt vizitate le adaugam in coada pt a parcurge
+    retinem variabilele contor si contor2 pentru a stii pe ce nivel suntem
+    nr_poduri_aux creste cu fiecare nivel
+Complexitate: O(N*M + N*(M-1)+M*(N-1)) = O(N*M)
+
+2) Adrese
+-Am construit un map in care pun fiecare adresa care nu a mai fost pusa
+-Fiecarui user ii atribui un id (de la 0 la n-1), si e adaugat in map prin id
+-Folosesc si o structura de persoane pentru a tine cont de ele(vector de structura)
+-Atunci cand intalnim o adresa care e in map:
+    iau id-ul la care se intalneste user-ul care a avut acea adresa
+    daca id_ul real al userului la care ma aflu acu e mai mic decat user-ul cu acea adresa:
+        vom pune id-ul real al userului la fiecare id_real care are id_ul real al acelui user
+    altfel
+        vom face invers
+-Construiesc un vector format din structura de persoana reala
+-Il construiesc pe baza map-ului doar ca acum in functie de id-ul real din structura anterioara
+-Apoi adaug fiecare persoana reala intr-un sorted set si afisez pe rand oamenii.
+Complexitate: O(N^2*(NR_Adrese))
+
+3) Lego
+-Am rezolvat-o prin backtracking(sa fac toate combinatiile de piese posibile)
+-Am tinut cont de faptul ca 1 va fi mereu prima piesa folosita
+-Apoi pentru restul am creat un domeniu si un vector de solutii
+-Apelez back, unde construiesc fiecare solutie in parte
+-Cand gasesc o solutie(solution e plin), apelez un dfs pentru a calcula toate sumele posibile
+-Fiecare suma posibila din acele piese, adaug intr-un set unde o sa fie toate sumele ordonate
+-Parcurg acea multime si de fiecare data cand sunt numere consecutive adaug intr-un contor
+-Atunci cand nu mai sunt numere consecutive verific cat de multe nr cons s-au strans
+-Daca sunt mai multe decat max, tin minte solutia ca fiind cea mai mare
+Complexitate: 
+
+4) Retea
+-Am folosit alg lui tarjan sa aflu punctele critice
+-Apoi pentru fiecare punct critic, fac tarjan sa aflu componentele conexe(fara acel nod)
+-Ca sa calculez suma de conexiuni afectate, folosesc un numar standard 2*(n-1) pentru orice punct
+-Daca nu este punct de articulatie
+    va ramane numarul standard de conexiuni afectate
+-Daca este punct de articulatie
+    pentru fiecare componenta conexa:
+    la nr standard se va adauga size_comp_conex*((n-1) - size_comp_conex)
+-La final se afiseaza toate
+Complexitate: 
